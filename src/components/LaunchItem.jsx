@@ -1,7 +1,8 @@
-import { Box,  Flex, Text, Tag, Spacer } from '@chakra-ui/react';
+import { Box,  Flex, Text, Tag, Spacer, Button } from '@chakra-ui/react';
 import { FaCalendar } from "react-icons/fa6";
 import dayjs from "dayjs";
 import "dayjs/locale/es";
+import { Link } from 'react-router-dom';
 
 
 export function LaunchItem(launch){
@@ -12,18 +13,22 @@ export function LaunchItem(launch){
             Mission <strong>{launch.mission_name}</strong>({launch.launch_year})
           </Text>
           <Spacer/>
-          <Tag.Root  p={4}  colorPalette={launch.launch_success ? "green" : "red"} >
+          <Tag.Root  p={3}  colorPalette={launch.launch_success ? "green" : "red"} >
             <Tag.Label>
               {launch.launch_success ? "Success" : "Failure"}
             </Tag.Label>
           </Tag.Root>
         </Flex>
         <Flex align="center">
-        <FaCalendar />
-        <Text fontSize="sm" ml={1}>
+        <FaCalendar  color="gray.500"/>
+        <Text fontSize="sm" ml={1} color="gray.500">
           { dayjs(launch.launch_date_local).locale("es").format("D MMMM, YYYY")}
         </Text>
         </Flex>
+
+        <Link to={`/launch/${launch.flight_number}`}>
+        <Button  mt={2} colorPalette="purple">  More Details </Button>
+        </Link>
       </Box>
     )
 }
