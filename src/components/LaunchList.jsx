@@ -14,13 +14,15 @@ export function LaunchList(){
     return (
         <>
             <Heading as="h1" align="center" size="2xl" m={4} fontWeight="bold" textAlign="center"> SpaceX Launches</Heading>
+            {!launches.length === 0 ? (<div>Loading ...</div>) : (
             <section>
                 {launches.map((launch) => (
                     <LaunchItem key={launch.flight_number} {...launch} />
                 ))}
             </section> 
+            )}
         </>
-    )
+    );
 
 
 }
